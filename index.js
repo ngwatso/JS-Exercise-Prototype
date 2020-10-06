@@ -88,7 +88,37 @@ Nick.toString();
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {}
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+  this.gasoline = [0];
+}
+
+Car.prototype.fill = function (fuel) {
+  for (let i = 0; i < fuel; i++) {
+    this.gasoline.push(1);
+  }
+  const fillTank = this.gasoline.reduce((total, item) => {
+    return total + item;
+  }, 0);
+  return (this.tank = 0 + fillTank);
+};
+
+// Car.prototype.drive = function (miles) {
+//   return (this.odometer = 0 + miles);
+// };
+
+const comaro = new Car("Comaro", 17);
+console.log(comaro);
+
+comaro.fill(10);
+comaro.fill(10);
+// comaro.drive(75);
+// comaro.drive(150);
+
+console.log(comaro);
 
 /*
   TASK 3
@@ -97,16 +127,28 @@ function Car() {}
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {}
+function Baby(name, age, toy) {
+  Person.call(this, name, age);
+  this.favoriteToy = toy;
+}
+
+Baby.prototype = Object.create(Person.prototype);
+
+const aiden = new Baby("Aiden", 2, "pumice");
+console.log(aiden);
+
+Baby.prototype.play = function () {
+  return `Playing with ${this.favoriteToy}.`;
+};
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global - "this" defines the entire window (everything on the page)
+  2. Implicit - "this" defines an object (to the left of the dot)
+  3. New - "this" defines objects created by a constructor function
+  4. Explicit - "this" defines a specific object (the one to the right in parenthesis)
 */
 
 ///////// END OF CHALLENGE /////////
