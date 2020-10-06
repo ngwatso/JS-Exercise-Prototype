@@ -45,36 +45,34 @@ function Person(name, age) {
   console.log(this.stomach);
 }
 
-Person.prototype.eat = function (someFood, food) {
-  for (let i = 0; i < food; i++) {
-    this.stomach.push(someFood);
-  }
+Person.prototype.eat = function (someFood) {
+  this.stomach.push(someFood);
 
-  if (this.stomach.length >= 10) {
-    this.stomach.length = 10;
+  if (this.stomach.length > 10) {
+    this.stomach.pop();
   }
-  return console.log(this.stomach);
+  return this.stomach;
 };
 
 Person.prototype.poop = function () {
   for (let i = 0; i < 10; i++) {
     this.stomach.shift();
   }
-  return console.log(this.stomach);
+  return console.log(this.stomach.length);
 };
 
-Person.prototype.speak = function () {
-  return console.log(`Hi, my name is ${this.name}, I'm ${this.age} years old.`);
+Person.prototype.toString = function personToString() {
+  return `${this.name}, ${this.age}`;
 };
 
 const Nick = new Person("Nick", 41);
 console.log(Nick);
 
-Nick.eat("hotdog", 5);
-Nick.eat("hamburger", 4);
-Nick.eat("corn", 3);
+Nick.eat("hotdog");
+Nick.eat("hamburger");
+Nick.eat("corn");
 Nick.poop();
-Nick.speak();
+Nick.toString();
 
 /*
   TASK 2
