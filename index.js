@@ -42,7 +42,6 @@ function Person(name, age) {
   this.name = name;
   this.age = age;
   this.stomach = [];
-  console.log(this.stomach);
 }
 
 Person.prototype.eat = function (someFood) {
@@ -94,6 +93,7 @@ function Car(model, milesPerGallon) {
   this.tank = 0;
   this.odometer = 0;
   this.gasoline = [0];
+  this.trip = [];
 }
 
 Car.prototype.fill = function (fuel) {
@@ -106,17 +106,24 @@ Car.prototype.fill = function (fuel) {
   return (this.tank = 0 + fillTank);
 };
 
-// Car.prototype.drive = function (miles) {
-//   return (this.odometer = 0 + miles);
-// };
+Car.prototype.drive = function (miles) {
+  for (let i = 0; i < miles; i++) {
+    this.trip.push(1);
+  }
+  console.log(this.trip.length);
+  return console.log(
+    (this.odometer = 0 + this.trip.length),
+    (this.tank = this.fill() - miles / this.milesPerGallon)
+  );
+};
 
 const comaro = new Car("Comaro", 17);
 console.log(comaro);
 
 comaro.fill(10);
-comaro.fill(10);
+// comaro.fill(10);
 // comaro.drive(75);
-// comaro.drive(150);
+comaro.drive(100);
 
 console.log(comaro);
 
