@@ -111,11 +111,11 @@ Car.prototype.drive = function (miles) {
     this.trip.push(1);
   }
   if (this.trip.length >= this.fill() * this.milesPerGallon) {
-    return console.log(
+    return [
       (this.odometer = this.fill() * this.milesPerGallon),
       (this.tank = 0),
-      `I ran out of fuel at ${this.odometer} miles!`
-    );
+      `I ran out of fuel at ${this.odometer} miles!`,
+    ];
   } else {
     console.log(this.trip.length);
     return console.log(
@@ -125,11 +125,11 @@ Car.prototype.drive = function (miles) {
   }
 };
 
-const comaro = new Car("Comaro", 17);
-console.log(comaro);
+const comaro = new Car("Comaro", 20);
+// console.log(comaro);
 
 comaro.fill(10);
-comaro.drive(300);
+comaro.drive(201);
 
 console.log(comaro);
 
